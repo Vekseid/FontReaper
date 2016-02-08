@@ -1,0 +1,30 @@
+{
+  "name": "font-reaper",
+  "version": "0.0.0",
+  "description": "Murders icon fonts",
+  "main": "reaper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vekseid/FontReaper.git"
+  },
+  "keywords": [
+    "font",
+    "fonts",
+    "icon",
+    "icons",
+    "svg",
+    "css"
+  ],
+  "author": "Vekseid",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Vekseid/FontReaper/issues"
+  },
+  "homepage": "https://github.com/Vekseid/FontReaper#readme",
+  "dependencies": {
+    "svgpath": "^2.1.5"
+  }
+}
