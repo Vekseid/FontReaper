@@ -4,7 +4,9 @@ Font Reaper dismantles an icon font, such as Font Awesome, and builds a syntacti
 
 To use, after downloading/cloning and _npm install_, run:
 
-    `node reaper.js css/someiconfont.css`
+    node reaper.js css/someiconfont.css
+
+The result will get stored in the /out directory. The files currently there are the result of running this on Font Awesome.
 
 This is a quick and dirty program, made out of a need to break up Font Awesome and fall back to something other than raster images or sprites. It does not have any business being a part of any build or deployment script. The expectation is that you will want to modify the files this script generates to suit your needs, and likely the script itself as well.
 
@@ -18,11 +20,11 @@ I have included Font Awesome and the resulting output as an example.
 
 Seren Davies did a talk, [Death to Icon Fonts](https://www.youtube.com/watch?v=9xXBYcWgCHA), where she discusses her trouble with them as a person with dyslexia, and other issues with said fonts. My forums have a lot of members with dyslexia, and other members with a great variety of accessibility challenges besides.
 
-Of course, the ideal solution is that user fonts should not clobber glyphs they don't have.
+Of course, the ideal solution is that user fonts should not clobber glyphs they don't have. There are certainly better font replacers available.
 
 It would also be ideal that some of my forums' membership was not still chained to IE7. Yes, I have to write that sentence with all seriousness in 2016. Fortunately my visually impaired members are not so chained, or I would be a bit stumped.
 
-Old browsers aside, SVGs as background or content properites _just work_, across a wide variety of environments and usages.
+Old browsers aside, SVGs as background or content properties _just work_, in the exact same manner, across a wide variety of environments and usages. There are [a lot of little issues](https://www.reddit.com/r/web_design/comments/44revh/font_reaper_replace_your_icon_font_with_a/czt5ylv) that make font-based solutions a less than optimal choice.
 
 ### background.css vs content.css
 
@@ -40,7 +42,7 @@ Will hopefully not be needed for long. My IE7 and IE8 users are fully aware of t
 
 IE7 is IE7. If you need this I assume you are familiar with triggering hasLayout, expressions, yadda yadda. It implements [this hack by steveush](https://steveush.wordpress.com/2013/09/16/icon-fonts-in-internet-explorer-7/). It works even more reliably than the IE8 hack does.
 
-You will notice a script in the generated test.html for IE8. It is based on [ausi's answer to this Stackoverflow question](http://stackoverflow.com/questions/9809351/ie8-css-font-face-fonts-only-working-for-before-content-on-over-and-sometimes), with some cleaning and an added delay. A delay of 0 has about a 50/50 chance of working in my experience, and does not seem to be much faster visually.
+You will notice a script in the generated test.html for IE8. It is based on [ausi's answer to this Stackoverflow question](http://stackoverflow.com/questions/9809351/ie8-css-font-face-fonts-only-working-for-before-content-on-over-and-sometimes), with some cleaning and an added delay. A delay of 0 has about a 50/50 chance of working in my experience, and does not seem to be much faster visually. It can additionally help to ensure that you are setting expiration headers for .eot files on your webserver.
 
 IE8 has some serious issues trying to render a lot of different icons in pseudo-elements.
 
@@ -64,7 +66,7 @@ I saw a tutorial that did just this, and I have seen large, production sites fol
 
 It does not work.
 
-While JAWS may be out of your price rance, [NVDA](http://www.nvaccess.org/) is certainly affordable for you, and I highly recommend it.
+While JAWS may be out of your price range, [NVDA](http://www.nvaccess.org/) is certainly affordable for you, and I highly recommend it.
 
 ### Final usage notes
 
