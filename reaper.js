@@ -54,7 +54,7 @@ function evalSVG(data, svg, size) {
 
   data.forEach(function (item) {
     var re = new RegExp('(<glyph [^&]+&#x' + item.glyph + ';[^/]+/>)'),
-        glyph = svg.match(re), width, path;
+        glyph = svg.match(re), width, path, pathabs, pathrel;
 
     if (glyph && glyph[1]) {
       width = glyph[1].match(/horiz-adv-x='([0-9.]+)'/i);
@@ -72,11 +72,23 @@ function evalSVG(data, svg, size) {
 
         if (width > fontheight) {
           // Rescale extra-wide fonts, don't try to move them out of the box.
-          path = path.translate(0, defheight).scale(scalefactor / (width / fontheight)).toString();
+          path = path.translate(0, defheight).scale(scalefactor / (width / fontheight));
         }
         else {
           // Narrow fonts need to be centered.
-          path = path.translate((fontheight - width) / 2, defheight).scale(scalefactor).toString();
+          path = path.translate((fontheight - width) / 2, defheight).scale(scalefactor);
+        }
+
+        pathrel = path.rel().toString();
+        pathabs = path.abs().toString();
+        path = path.toString();
+
+        if (path.length > pathrel.length) {
+          path = pathrel;
+        }
+
+        if (path.length > pathabs.length) {
+          path = pathabs;
         }
 
         arr.push({
