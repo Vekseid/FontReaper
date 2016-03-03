@@ -20,7 +20,7 @@ function evalSVG(data, svg, size) {
   var arr = [], unitsperem = 1000, defwidth = 1000, defheight = 1000, defdescent=0,
     fontface, font, fontheight, scalefactor, temp, svgpath = require('svgpath');
 
-  size = typeof size !== 'undefined' ?  size : 2048;
+  size = typeof size !== 'undefined' ?  size : 4096;
 
   svg = svg.replace(/"/g, "'");
 
@@ -79,9 +79,9 @@ function evalSVG(data, svg, size) {
           path = path.translate((fontheight - width) / 2, defheight).scale(scalefactor);
         }
 
-        pathrel = path.rel().toString();
-        pathabs = path.abs().toString();
-        path = path.toString();
+        pathrel = path.rel().round().toString();
+        pathabs = path.abs().round().toString();
+        path = path.round().toString();
 
         if (path.length > pathrel.length) {
           path = pathrel;
@@ -119,7 +119,7 @@ if (eotfile) {
 
 var data = parse(css);
 
-var size = 2048;
+var size = 4096;
 var svgdata = evalSVG(data, svg, size);
 
 // The pure css fix for IE8 does not function like people think it does.
