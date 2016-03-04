@@ -72,11 +72,11 @@ function evalSVG(data, svg, size) {
 
         if (width > fontheight) {
           // Rescale extra-wide fonts, don't try to move them out of the box.
-          path = path.translate(0, defheight).scale(scalefactor / (width / fontheight));
+          path = path.translate(0, defheight + defdescent / 2).scale(scalefactor / (width / fontheight));
         }
         else {
           // Narrow fonts need to be centered.
-          path = path.translate((fontheight - width) / 2, defheight).scale(scalefactor);
+          path = path.translate((fontheight - width) / 2, defheight + defdescent / 2).scale(scalefactor);
         }
 
         pathrel = path.rel().round().toString();
