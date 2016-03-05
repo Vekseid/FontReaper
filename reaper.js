@@ -20,7 +20,7 @@ function evalSVG(data, svg, size) {
   var arr = [], unitsperem = 1000, defwidth = 1000, defheight = 1000, defdescent=0,
     fontface, font, fontheight, scalefactor, temp, svgpath = require('svgpath');
 
-  size = typeof size !== 'undefined' ?  size : 4096;
+  size = typeof size !== 'undefined' ?  size : 3584;
 
   svg = svg.replace(/"/g, "'");
 
@@ -41,7 +41,7 @@ function evalSVG(data, svg, size) {
     defdescent = parseFloat(temp[1]);
   }
 
-  fontheight = defheight - defdescent;
+  fontheight = defheight;
   scalefactor = size / fontheight;
 
   font = svg.match(/<font [^>]+>/)[0];
@@ -76,7 +76,7 @@ function evalSVG(data, svg, size) {
         }
         else {
           // Narrow fonts need to be centered.
-          path = path.translate((fontheight - width) / 2, defheight + defdescent / 2).scale(scalefactor);
+          path = path.translate((fontheight - width) / 2, defheight + defdescent).scale(scalefactor);
         }
 
         pathrel = path.rel().round().toString();
@@ -119,7 +119,7 @@ if (eotfile) {
 
 var data = parse(css);
 
-var size = 4096;
+var size = 3584;
 var svgdata = evalSVG(data, svg, size);
 
 // The pure css fix for IE8 does not function like people think it does.
@@ -185,6 +185,7 @@ var buffhtml = "<!DOCTYPE html>\n" +
                "    width: 2em;\n" +
                "    line-height: 1.4em;\n" +
                "  }\n" +
+               ".icon { border: 1px solid; }\n" +
                "</style>\n" +
                "</head>\n" +
                "<body>\n";
